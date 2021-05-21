@@ -1,15 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Sidebar from './components/sidebar/Sidebar';
+import Mainpage from './components/mainpage/Mainpage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Weather App
-        </p>
-      </header>
+        <Sidebar/>
+        <Mainpage/>
     </div>
   );
 }

@@ -1,0 +1,76 @@
+.sidebar {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    position: absolute;
+    width: 30vw;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    background: #1E213A;
+}
+
+.aside {
+    position: absolute;
+    width: 30vw;
+    left: 0px;
+    top: 0px;
+    min-height: 100vh;
+    background: #1E213A;
+  }
+
+.search-location {
+    display: flex;
+    flex-flow: row;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    justify-content: space-around;
+
+}
+
+.button {
+    background: #6E707A;
+    border: none;
+    color: #E7E7EB;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.cloud-display {
+    display: flex;
+    height: 200px;
+    margin-top: 30px;
+    
+}
+
+.cloud-background {
+    transform: scale(1.25);
+    width: 100%;
+    opacity: 0.1;
+}
+
+.indicator-img {
+    position: absolute;
+    top: 300;
+    left: 120px;
+}
+
+.today-weather {
+    margin-top: 50px;
+    display: flex;
+    flex-flow: column;
+    height: 150px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-location {
+    margin-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
