@@ -1,5 +1,9 @@
+button {
+  cursor: pointer;
+}
+
 .App {
   min-height: 100vh;
   min-width: 100vh;
-  color: #E7E7EB;
+  color: whitesmoke;
 }

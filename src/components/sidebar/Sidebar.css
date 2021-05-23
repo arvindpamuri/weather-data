@@ -1,3 +1,6 @@
+i:hover {
+    cursor: pointer;
+}
 .sidebar {
     display: flex;
     flex-flow: column;
@@ -19,25 +22,36 @@
     background: #1E213A;
   }
 
-.search-location {
+.search-button-section {
     display: flex;
     flex-flow: row;
-    margin-top: 30px;
+    margin-top: 60px;
     margin-bottom: 50px;
     justify-content: space-around;
-
+    align-items: center;
 }
 
-.button {
+.search-button {
+    height: 50px;
     background: #6E707A;
     border: none;
     color: #E7E7EB;
-    padding: 15px 32px;
+    padding: 15px 20px;
     text-align: center;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 15px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+.btn-circle {
+    background: #6E707A;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    color: whitesmoke;
 }
 
 .cloud-display {
@@ -73,4 +87,50 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
+}
+
+.search-exit {
+    display: flex;
+    flex-flow: row;
+    width: 60%;
+    margin-top: 30px;
+    margin-bottom: 0;
+    justify-content: flex-end;
+    
+}
+
+.search-location-section {
+    display: flex;
+    flex-flow: row;
+    width: 60%;
+    height: 48px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    justify-content: space-evenly;
+    background-color: inherit;
+}
+
+.search-location {
+    display: flex;
+    flex-flow: row;
+    border: 1px solid whitesmoke;
+}
+
+.search-text {
+    background-color: inherit;
+    border: none;
+    color: whitesmoke;
+    text-align: left;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-sidebar {
+    align-items: center;
+}
+
+.search-result-section {
+    display: flex;
+    width: 60%;
+    max-height: 500px;
 }

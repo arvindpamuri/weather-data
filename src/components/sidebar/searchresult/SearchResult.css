@@ -1,0 +1,31 @@
+ul {
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+    overflow: auto;
+}
+
+li {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-button {
+    border: none;
+    display: flex;
+    background-color: inherit;
+    font-size: 20px;
+    padding: 20px;
+    width: 100%;
+    justify-content: space-between;
+    cursor: pointer;
+    color: whitesmoke
+}
+
+li:hover {
+    border: 1px solid;
+}
