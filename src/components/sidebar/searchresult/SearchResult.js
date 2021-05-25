@@ -1,20 +1,26 @@
+import { useState, useEffect } from 'react';
 import './SearchResult.css'
 
-const SearchResult = ({data, showSearchResult}) => {
+const SearchResult = ({resultData, setResultData,  showSearchResult, setShowSearch, setWoeid, setShowSearchResult}) => {
 
     let lst;
-    if (data && data !== "") {
+    function handleLocationClick(woeid) {
+        setShowSearch(false);
+        setWoeid(woeid);
+        setShowSearchResult(false);
+        setResultData([]);
+    }
 
-        lst = data.map(el => (
+    if (resultData && resultData !== "") {
+
+        lst = resultData.map(el => (
             <li key={el.woeid}>
-                <button class='result-button'>{el.title}<i class="material-icons">chevron_right</i></button>
+                <button class='result-button' onClick={() => {handleLocationClick(el.woeid)}}>{el.title}<i class="material-icons">chevron_right</i></button>
                 
             </li>
         ))
     }
     
-
-    console.log(data)
     if(showSearchResult && lst) {
         return(
             <ul>

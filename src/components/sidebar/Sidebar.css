@@ -55,23 +55,31 @@ i:hover {
 }
 
 .cloud-display {
-    display: flex;
     height: 200px;
     margin-top: 30px;
+    background-image: url(http://localhost:3000/Cloud-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 75% 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
-.cloud-background {
-    transform: scale(1.25);
-    width: 100%;
-    opacity: 0.1;
+
+.state-img-div {
+    display: flex;
+    width: 50%;
+    height: 75%;
+
 }
 
-.indicator-img {
-    position: absolute;
-    top: 300;
-    left: 120px;
+.state-img {
+    width: 100%;
+    height: 100%;
 }
+
 
 .today-weather {
     margin-top: 50px;
@@ -133,4 +141,21 @@ i:hover {
     display: flex;
     width: 60%;
     max-height: 500px;
+}
+
+.weather-display-section {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-family: 'arial', sans-serif;
+    justify-content: space-evenly;
+}
+
+.temp {
+    
+    
+}
+
+.city-location {
+    
 }

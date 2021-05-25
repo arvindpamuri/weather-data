@@ -1,30 +1,34 @@
 import { useState, useEffect } from 'react';
 
-function useWeatherApi(url)  {
+function GetWeatherAPI(woeid) {
 
-    const [data, setData] = useState([]);
+  const [weatherData, setWeatherData] = useState({});
 
-    useEffect(() => {
+  useEffect(() => {
 
-        const fetchWeatherData = async (url) => {
-            setData([]);
-            try {
-              const response = await fetch(url);
-              const fetchData = await response.json();
-              
-              setData([...fetchData]);
-        
-            } 
-            catch (error) {
-              console.log(error.message);
-            }
-        };
+    const fetchWeatherData = async (id) => {
+      
+      let url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id);
+      console.log(url)
+      setWeatherData([])
 
-        fetchWeatherData(url);
-    }, [url]);
+      try {
+        const response = await fetch(url);
+        const fetchData = await response.json();
 
-    //console.table(data)
-    return data;
+        setWeatherData(fetchData);
+
+      }
+      catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    fetchWeatherData(woeid);
+  }, [woeid]);
+
+  return weatherData;
+
 }
 
-export default useWeatherApi;
+export default GetWeatherAPI;

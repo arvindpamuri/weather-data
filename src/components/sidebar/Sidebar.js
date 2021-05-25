@@ -1,28 +1,57 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './Sidebar.css';
 import SearchResult from './searchresult/SearchResult';
 import clear from './../../assets/Clear.png';
-import cloudbackground from './../../assets/Cloud-background.png';
+// import cloudbackground from './../../assets/Cloud-background.png';
 
-const Sidebar = ({ getLocationName, data }) => {
+const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
 
     const [searchText, setSearchText] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [showSearchResult, setShowSearchResult] = useState(false);
-    //const [searchResult, setSearchResult] = useState(data)
+    const [resultData, setResultData] = useState([]);
+    console.log(typeof(weatherData))
+    console.log(weatherData)
+
+    let today = {};
+    let week = ["sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    if ( Object.keys(weatherData).length !== 0) {
+
+        let day_consolidated = weatherData.consolidated_weather[0];
+        console.log(day_consolidated)
+
+        today["temp"] = Math.round(day_consolidated.the_temp);
+        console.log(today["day"])
+        today["state"] = day_consolidated.weather_state_name;
+        today["state_img"] = `https://www.metaweather.com/static/img/weather/${day_consolidated.weather_state_abbr}.svg`;
+        console.log(today.state_img)
+
+        const d = new Date(day_consolidated.applicable_date);
+        today["week"] = week[d.getDay()];
+        today["day"] = d.getDate();
+        today["month"] = d.toLocaleString('default', { month: 'short' });
+        
+        console.log(today)
+    }
+
+    function handleCloseSearch() {
+        setShowSearch(false)
+        setResultData([])
+    }
 
     function handleSearch() {
         getLocationName(searchText);
-        setShowSearchResult(true)
+        setShowSearchResult(true);
     }
 
     const onChangeHandler = (val) => {
         setSearchText(val);
     };
 
-    console.log(searchText)
-    //console.log(searchResult)
+    useEffect(()=> {
+        setResultData(data)
+    }, [data])
 
     if(showSearch) {
 
@@ -30,7 +59,7 @@ const Sidebar = ({ getLocationName, data }) => {
             <div className="sidebar search-sidebar">
 
                 <section className="search-exit">
-                    <i class="material-icons md-dark md-48 md-white" onClick={() => setShowSearch(false)}>close</i>
+                    <i class="material-icons md-dark md-48 md-white" onClick={() => handleCloseSearch()}>close</i>
                 </section>
 
                 <section className='search-location-section'>
@@ -42,7 +71,14 @@ const Sidebar = ({ getLocationName, data }) => {
                 </section>
 
                 <section className='search-result-section'>
-                    <SearchResult data={data} showSearchResult={showSearchResult}/>
+                    <SearchResult 
+                        resultData={resultData} 
+                        setResultData={setResultData}
+                        showSearchResult={showSearchResult}
+                        setShowSearchResult={setShowSearchResult}
+                        setShowSearch={setShowSearch}
+                        setWoeid={setWoeid}
+                        />
                 </section>
                 
             </div>
@@ -59,22 +95,23 @@ const Sidebar = ({ getLocationName, data }) => {
                     <button className='btn-circle'><span class="material-icons md-48 md-light">my_location</span></button>
                 </section>
                 <section className="cloud-display">
-                    <img src={cloudbackground} className="cloud-background" alt="logo" />
-                    <img src={clear} className="indicator-img" alt="logo"/>
+                    {/* <img src={cloudbackground} className="cloud-background" alt="logo" /> */}
+                    <div className="state-img-div"> <img src={today.state_img} className="state-img" alt="logo"/> </div>
                 </section>
-                <section className="today-weather">
-                    <h1>15C</h1>
-                    <h5>Shower</h5>
-                </section>
-                <section className="date-location">
-                    <p>date</p>
-                    <p>location</p>
-                </section>
+                
+                {(weatherData) ? (
+                <section className="weather-display-section">
+                        <p style={{fontSize: "50px"}}>{today.temp}<span>°C</span></p>
+                        <p style={{fontSize: "30px"}}>{today.state}</p>
+                        <p style={{fontSize: "20px"}}>Today •   {today.week}, {today.day} {today.month}</p>
+                        <p style={{fontSize: "20px"}}> <span class="material-icons" style={{paddingRight:"5px"}}>location_on</span><span>{weatherData.title}</span></p>
+                </section>)
+                :
+                <section></section>}
+
             </div>
-
-
         );
     }
-} 
+}
 
 export default Sidebar;

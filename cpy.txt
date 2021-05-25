@@ -1,0 +1,3 @@
+style={{ background: `url(${cloudbackground})`, backgroundSize: "110% 100%", backgroundPosition: ", backgroundRepeat: "no-repeat"
+
+<div className="state-img"></div>

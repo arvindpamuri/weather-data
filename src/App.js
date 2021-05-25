@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
-import useWeatherApi from './state/weather';
+import GetLocationAPI from './state/location';
 
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import Mainpage from './components/mainpage/Mainpage';
+import GetWeatherAPI from './state/weather';
 
 function App() {
   
   const [searchURL, setSearchURL] = useState("");
+  const [woeid, setWoeid] = useState("");
+  const [weatherData, setWeatherData] = useState({});
 
 
   function getLocationName(searchText) {
@@ -17,13 +20,23 @@ function App() {
     setSearchURL(fullURL)
   }
 
-  const data = useWeatherApi(searchURL)
+  const locationData = GetLocationAPI(searchURL);
+  const  weatherDataAPI = GetWeatherAPI(woeid);
   //console.log(searchURL)
-  //console.log(data)
+  // console.log(weatherData)
+
+  useEffect(() => {
+    setWeatherData(weatherDataAPI);
+  }, [weatherDataAPI]);
 
   return (
     <div className="App">
-        <Sidebar getLocationName={getLocationName} data={data}/>
+        <Sidebar 
+          getLocationName={getLocationName} 
+          data={locationData}
+          setWoeid={setWoeid}
+          weatherData={weatherData}
+          />
         <Mainpage/>
     </div>
   );

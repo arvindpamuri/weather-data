@@ -6,7 +6,7 @@ const Day = () => {
     return(
         <div className="day">
             <p>Date</p>
-            <img src={Snow} alt="img"></img>
+            {/* <img src={Snow} alt="img"></img> */}
             <div>
                 <span>0</span>
                 <span>10</span>
