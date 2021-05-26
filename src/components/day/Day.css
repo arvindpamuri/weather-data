@@ -1,5 +1,18 @@
 .day {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     width: 120px;
     height: 177px;
     background-color: #1E213A;
+    font-family: Raleway;
+    font-style: normal;
+}
+
+.temps {
+    display: flex;
+    justify-content: space-around;
+    align-items: spac ;
+    width: 100%;
 }

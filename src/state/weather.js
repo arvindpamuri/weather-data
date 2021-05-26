@@ -9,7 +9,6 @@ function GetWeatherAPI(woeid) {
     const fetchWeatherData = async (id) => {
       
       let url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/".concat(id);
-      console.log(url)
       setWeatherData([])
 
       try {

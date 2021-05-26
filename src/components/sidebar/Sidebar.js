@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 
 import './Sidebar.css';
 import SearchResult from './searchresult/SearchResult';
-import clear from './../../assets/Clear.png';
-// import cloudbackground from './../../assets/Cloud-background.png';
 
 const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
 
@@ -11,28 +9,22 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
     const [showSearch, setShowSearch] = useState(false);
     const [showSearchResult, setShowSearchResult] = useState(false);
     const [resultData, setResultData] = useState([]);
-    console.log(typeof(weatherData))
-    console.log(weatherData)
 
     let today = {};
     let week = ["sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     if ( Object.keys(weatherData).length !== 0) {
 
         let day_consolidated = weatherData.consolidated_weather[0];
-        console.log(day_consolidated)
 
         today["temp"] = Math.round(day_consolidated.the_temp);
-        console.log(today["day"])
         today["state"] = day_consolidated.weather_state_name;
         today["state_img"] = `https://www.metaweather.com/static/img/weather/${day_consolidated.weather_state_abbr}.svg`;
-        console.log(today.state_img)
 
         const d = new Date(day_consolidated.applicable_date);
         today["week"] = week[d.getDay()];
         today["day"] = d.getDate();
         today["month"] = d.toLocaleString('default', { month: 'short' });
         
-        console.log(today)
     }
 
     function handleCloseSearch() {
@@ -91,11 +83,10 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
 
             <div className="sidebar">
                 <section className="search-button-section">
-                    <button className="search-button" onClick={() => setShowSearch(true)}>Search Location</button>
+                    <button className="search-button" onClick={() => setShowSearch(true)}>Search For Location</button>
                     <button className='btn-circle'><span class="material-icons md-48 md-light">my_location</span></button>
                 </section>
                 <section className="cloud-display">
-                    {/* <img src={cloudbackground} className="cloud-background" alt="logo" /> */}
                     <div className="state-img-div"> <img src={today.state_img} className="state-img" alt="logo"/> </div>
                 </section>
                 

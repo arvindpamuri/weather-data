@@ -1,18 +1,28 @@
 import './Day.css';
-import Snow from './../../assets/Snow.png';
 
-const Day = () => {
+const Day = ({info}) => {
 
-    return(
-        <div className="day">
-            <p>Date</p>
-            {/* <img src={Snow} alt="img"></img> */}
-            <div>
-                <span>0</span>
-                <span>10</span>
+    if(info) {
+        return(
+        
+            <div className="day">
+                <p>{info.date}</p>
+                <img style={{width: "70%", height: "40%"}} src={info.state_img} alt="img"></img>
+                <div className="temps">
+                    <div><p>{info.min_temp}°C</p></div>
+                    <div><p>{info.max_temp}°C</p></div>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    else {
+        return(
+            <div className="day"></div>
+        );
+        
+    }
+    
 }
 
 export default Day;

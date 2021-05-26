@@ -37,7 +37,7 @@ function App() {
           setWoeid={setWoeid}
           weatherData={weatherData}
           />
-        <Mainpage/>
+        <Mainpage weatherData={weatherData}/>
     </div>
   );
 }

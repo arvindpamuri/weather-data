@@ -5,7 +5,6 @@ i:hover {
     display: flex;
     flex-flow: column;
     min-height: 100vh;
-    position: absolute;
     width: 30vw;
     left: 0px;
     top: 0px;
@@ -13,20 +12,12 @@ i:hover {
     background: #1E213A;
 }
 
-.aside {
-    position: absolute;
-    width: 30vw;
-    left: 0px;
-    top: 0px;
-    min-height: 100vh;
-    background: #1E213A;
-  }
-
 .search-button-section {
     display: flex;
     flex-flow: row;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 50px;
+    padding: 0 40px;
     justify-content: space-around;
     align-items: center;
 }
@@ -37,7 +28,7 @@ i:hover {
     border: none;
     color: #E7E7EB;
     padding: 15px 20px;
-    text-align: center;
+    text-align: start;
     text-decoration: none;
     font-size: 15px;
     margin: 4px 2px;
