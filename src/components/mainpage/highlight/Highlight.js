@@ -2,6 +2,14 @@ import './Highlight.css';
 
 const Highlight = ({info}) => {
 
+    let compass = {
+        N: 'north', S: 'south', E: "east", W: "west",
+        NE: 'north_east', NW: 'north_west', SE: 'south_east', SW: 'south_west',
+        NNE: 'north_east', ENE: 'north_east', NNW: 'north_west', WNW: 'north_west',
+        ESE: 'south_east', SSE: 'south_east',  WSW: 'south_west', SSW: 'south_west'  
+    } ;
+
+
     if(info) {
 
         return(
@@ -13,7 +21,7 @@ const Highlight = ({info}) => {
                     <span>Wind Status</span>
                     <span style={{ fontSize: "40px"}}>{info.wind_speed}mph</span>
                     <div>
-                        <span style={{ transform: [{rotateY: '75deg'}] }} class="material-icons">navigation</span>
+                        <span class="material-icons">{compass[info.wind_direction_compass]}</span>
                         <span>{info.wind_direction_compass}</span>
                     </div>
                 </div>

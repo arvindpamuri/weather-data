@@ -2,21 +2,29 @@ import { useEffect, useState } from 'react';
 
 import './Sidebar.css';
 import SearchResult from './searchresult/SearchResult';
+import { TodayWeather } from './TodayWeather/TodayWeather';
 
-const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
+const Sidebar = ({ getLocationName, locationResultData, setWoeid, weatherData, unit, getCurrentLocation }) => {
 
     const [searchText, setSearchText] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [showSearchResult, setShowSearchResult] = useState(false);
     const [resultData, setResultData] = useState([]);
 
+    // console.log(weatherData)
     let today = {};
     let week = ["sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     if ( Object.keys(weatherData).length !== 0) {
 
         let day_consolidated = weatherData.consolidated_weather[0];
 
-        today["temp"] = Math.round(day_consolidated.the_temp);
+        if (unit === 'F') {
+            today["temp"] = Math.floor((day_consolidated.the_temp * 9.0/5.0) + 32.0);
+        }
+        else {
+            today["temp"] = Math.floor(day_consolidated.the_temp);
+        }
+
         today["state"] = day_consolidated.weather_state_name;
         today["state_img"] = `https://www.metaweather.com/static/img/weather/${day_consolidated.weather_state_abbr}.svg`;
 
@@ -25,6 +33,13 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
         today["day"] = d.getDate();
         today["month"] = d.toLocaleString('default', { month: 'short' });
         
+    }
+
+    function handleGetCurrentLocation() {
+        setResultData([]);
+        getCurrentLocation();
+        setWoeid()
+
     }
 
     function handleCloseSearch() {
@@ -42,14 +57,13 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
     };
 
     useEffect(()=> {
-        setResultData(data)
-    }, [data])
+        setResultData(locationResultData)
+    }, [locationResultData])
 
     if(showSearch) {
 
         return(
-            <div className="sidebar search-sidebar">
-
+            <>
                 <section className="search-exit">
                     <i class="material-icons md-dark md-48 md-white" onClick={() => handleCloseSearch()}>close</i>
                 </section>
@@ -73,7 +87,7 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
                         />
                 </section>
                 
-            </div>
+            </>
         );
     }
 
@@ -81,18 +95,22 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
 
         return(
 
-            <div className="sidebar">
+            <>
                 <section className="search-button-section">
                     <button className="search-button" onClick={() => setShowSearch(true)}>Search For Location</button>
-                    <button className='btn-circle'><span class="material-icons md-48 md-light">my_location</span></button>
+                    <button className='btn-circle' onClick={() => handleGetCurrentLocation()}><span class="material-icons md-48 md-light">my_location</span></button>
                 </section>
                 <section className="cloud-display">
-                    <div className="state-img-div"> <img src={today.state_img} className="state-img" alt="logo"/> </div>
+                    <div className="state-img-div">
+                        {(today.state_img) ? 
+                        (<img src={today.state_img} className="state-img" alt=""/>)
+                        : (<p></p>)}
+                    </div>
                 </section>
                 
                 {(weatherData) ? (
                 <section className="weather-display-section">
-                        <p style={{fontSize: "50px"}}>{today.temp}<span>°C</span></p>
+                        <p style={{fontSize: "50px"}}>{today.temp}<span>°{unit}</span></p>
                         <p style={{fontSize: "30px"}}>{today.state}</p>
                         <p style={{fontSize: "20px"}}>Today •   {today.week}, {today.day} {today.month}</p>
                         <p style={{fontSize: "20px"}}> <span class="material-icons" style={{paddingRight:"5px"}}>location_on</span><span>{weatherData.title}</span></p>
@@ -100,7 +118,7 @@ const Sidebar = ({ getLocationName, data, setWoeid, weatherData }) => {
                 :
                 <section></section>}
 
-            </div>
+            </>
         );
     }
 }

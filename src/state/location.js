@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
 
-function GetLocationAPI(url)  {
+function GetLocationAPI(st)  {
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
 
-      const fetchLocationData = async (url) => {
+      const fetchLocationData = async (st) => {
         setData([]);
+
+        //console.log(st)
+        let url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?".concat(st);
+        // console.log(url)
         try {
           const response = await fetch(url);
           const fetchData = await response.json();
@@ -20,10 +24,9 @@ function GetLocationAPI(url)  {
         }
       };
 
-      fetchLocationData(url);
-    }, [url]);
+      fetchLocationData(st);
+    }, [st]);
 
-    //console.table(data)
     return data;
 }
 

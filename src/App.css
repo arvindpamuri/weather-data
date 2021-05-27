@@ -8,3 +8,57 @@ button {
   flex: 1;
   color: whitesmoke;
 }
+
+.sidebar {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  width: 30vw;
+  left: 0px;
+  top: 0px;
+  background: #1E213A;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0px;
+  width: 70vw;
+  left: 30vw;
+  background: #100E1D;
+  min-height: 100vh;
+  text-align: center;
+}
+
+@media screen and (max-width: 1120px) {
+
+  .App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    color: whitesmoke;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-flow: column;
+    /* min-height: 100vh; */
+    width: 100%;
+    /* left: 0px; */
+    top: 0px;
+    /* height: 100%; */
+    background: #1E213A;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0px;
+    width: 100%;
+    /* left: 30vw; */
+    background: #100E1D;
+    min-height: 100vh;
+    text-align: center;
+  }
+}

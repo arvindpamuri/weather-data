@@ -1,13 +1,3 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    margin-right: 0px;
-    width: 70vw;
-    left: 30vw;
-    background: #100E1D;
-    min-height: 100vh;
-    text-align: center;
-}
 
 .change-unit {
     display: flex;
@@ -30,7 +20,7 @@
 
 .week{
     display: flex;
-    height: 30vh;
+    min-height: 30vh;
     padding: 0px 10%;
     justify-content: space-around;
     margin-top: 20px;
@@ -42,4 +32,16 @@
     flex-flow: row wrap;
     justify-content: center;
 
+}
+
+@media screen and (max-width: 900px) {
+    .week{
+        display: flex;
+        flex-direction: column;
+        /* min-height: 30vh; */
+        padding: 0px 10%;
+        justify-content: space-around;
+        margin-top: 20px;
+        align-items: center;
+    }
 }

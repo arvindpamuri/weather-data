@@ -1,16 +1,7 @@
 i:hover {
     cursor: pointer;
 }
-.sidebar {
-    display: flex;
-    flex-flow: column;
-    min-height: 100vh;
-    width: 30vw;
-    left: 0px;
-    top: 0px;
-    height: 100%;
-    background: #1E213A;
-}
+
 
 .search-button-section {
     display: flex;
@@ -55,7 +46,6 @@ i:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 
@@ -95,6 +85,7 @@ i:hover {
     margin-top: 30px;
     margin-bottom: 0;
     justify-content: flex-end;
+    align-self: center;
     
 }
 
@@ -107,6 +98,7 @@ i:hover {
     margin-bottom: 50px;
     justify-content: space-evenly;
     background-color: inherit;
+    align-self: center;
 }
 
 .search-location {
@@ -134,19 +126,4 @@ i:hover {
     max-height: 500px;
 }
 
-.weather-display-section {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    font-family: 'arial', sans-serif;
-    justify-content: space-evenly;
-}
 
-.temp {
-    
-    
-}
-
-.city-location {
-    
-}

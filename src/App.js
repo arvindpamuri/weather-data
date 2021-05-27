@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import GetLocationAPI from './state/location';
+import GetCurrentLocation from './state/currentLocation';
 
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
@@ -8,36 +9,88 @@ import GetWeatherAPI from './state/weather';
 
 function App() {
   
-  const [searchURL, setSearchURL] = useState("");
   const [woeid, setWoeid] = useState("");
+  // const [currentWoeid, setCurrentWoeid] = useState("");
   const [weatherData, setWeatherData] = useState({});
+  const [locationData, setLocationData] = useState({});
+  const [currentLocationData, setCurrentLocationData] = useState({});
+  const [unit, setUnit] = useState('C');
+  const [searchText, setSearchText] = useState("");
+  const [searchCoordinates, setSearchCoordinates] = useState("");
+  const [userLocationUsed, setUserLocationUsed] = useState(false);
 
+  // console.log(searchCoordinates);
+  // console.log(userLocationUsed);
+  // console.log(currentLocationData);
+  // console.log(searchText)
+  // console.log(woeid)
+  // console.log(locationData)
 
-  function getLocationName(searchText) {
-
-    let url = "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=";
-    let fullURL = url.concat(searchText)
-    setSearchURL(fullURL)
+  function getLocationName(text) {
+    setSearchText(`query=${text}`);
   }
 
-  const locationData = GetLocationAPI(searchURL);
-  const  weatherDataAPI = GetWeatherAPI(woeid);
-  //console.log(searchURL)
-  // console.log(weatherData)
+  function getCurrentLocation() {
+    setSearchText("");
+    setSearchCoordinates("");
+    setWeatherData({});
+    setUserLocationUsed(!userLocationUsed);
+    
+  }
+
+  const locationDataAPI = GetLocationAPI(searchText);
+  const weatherDataAPI = GetWeatherAPI(woeid);
+
+  const currentLocationCoord = GetCurrentLocation(userLocationUsed);
+  const currentLocationDataAPI = GetLocationAPI(searchCoordinates);
+
+  let currentWoeid = "";
+  if(Object.keys(currentLocationData).length !== 0) {
+    currentWoeid = (currentLocationData[0].woeid)
+  }
+
+  useEffect(() => {
+    setLocationData(locationDataAPI);
+  }, [locationDataAPI]);
 
   useEffect(() => {
     setWeatherData(weatherDataAPI);
   }, [weatherDataAPI]);
 
+  useEffect(() => {
+    setSearchCoordinates(currentLocationCoord)
+  }, [currentLocationCoord]);
+
+  useEffect(() => {
+    setCurrentLocationData(currentLocationDataAPI)
+  }, [currentLocationDataAPI]);
+
+  useEffect(() => {
+    setWoeid(currentWoeid)
+  },[currentWoeid]);
+
+
+
   return (
     <div className="App">
+      <div className="sidebar">
         <Sidebar 
           getLocationName={getLocationName} 
-          data={locationData}
+          locationResultData={locationData}
+          
           setWoeid={setWoeid}
           weatherData={weatherData}
+          unit={unit}
+          getCurrentLocation={getCurrentLocation}
           />
-        <Mainpage weatherData={weatherData}/>
+      </div>
+      <div className="main">
+        <Mainpage 
+          weatherData={weatherData}
+          unit={unit}
+          setUnit={setUnit}
+        />
+      </div>
     </div>
   );
 }

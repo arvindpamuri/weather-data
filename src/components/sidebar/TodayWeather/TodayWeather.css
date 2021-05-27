@@ -1,0 +1,7 @@
+.weather-display-section {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font-family: 'arial', sans-serif;
+    justify-content: space-evenly;
+}
