@@ -38,8 +38,6 @@
 
 ![screenshot](https://github.com/arvindpamuri/weather-data/blob/main/2021-05-28_10-36-35.png)
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
-
 - React Application using hooks.
 - Used only CSS for styling.
 - Code more elegant compared to using classes.
