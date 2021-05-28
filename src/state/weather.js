@@ -8,7 +8,7 @@ function GetWeatherAPI(woeid) {
 
     const fetchWeatherData = async (id) => {
       
-      let url = "https://mycorsproxy-it.herokuapp.com/https://www.metaweather.com/api/location/".concat(id);
+      let url = "https://secret-savannah-91168.herokuapp.com/https://www.metaweather.com/api/location/".concat(id);
       //console.log(url)
       setWeatherData([])
 

@@ -10,7 +10,7 @@ function GetLocationAPI(st)  {
         setData([]);
 
         //console.log(st)
-        let url = "https://mycorsproxy-it.herokuapp.com/https://www.metaweather.com/api/location/search/?".concat(st);
+        let url = "https://secret-savannah-91168.herokuapp.com/https://www.metaweather.com/api/location/search/?".concat(st);
         // console.log(url)
         try {
           const response = await fetch(url);

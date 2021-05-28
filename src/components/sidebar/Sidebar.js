@@ -107,7 +107,11 @@ const Sidebar = ({ getLocationName, locationResultData, setWoeid, weatherData, u
                     <div className="state-img-div">
                         {(today.state_img) ? 
                         (<img src={today.state_img} className="state-img" alt=""/>)
-                        : (<p></p>)}
+                        : 
+                        (   <div class="fa-8x">
+                                <i class="fas fa-spinner fa-spin "></i>
+                            </div>
+                        )}
                     </div>
                 </div>
                 
