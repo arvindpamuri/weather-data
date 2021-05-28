@@ -7,7 +7,7 @@ i:hover {
     display: flex;
     flex-flow: row;
     margin-top: 30px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     padding: 0 40px;
     justify-content: space-around;
     align-items: center;
@@ -15,9 +15,10 @@ i:hover {
 
 .search-button {
     height: 50px;
-    background: #6E707A;
+    background: whitesmoke;
     border: none;
-    color: #E7E7EB;
+    border-radius: 5px;
+    color: black;
     padding: 15px 20px;
     text-align: start;
     text-decoration: none;
@@ -36,37 +37,11 @@ i:hover {
     color: whitesmoke;
 }
 
-.cloud-display {
-    height: 200px;
-    margin-top: 30px;
-    background-image: url(http://localhost:3000/Cloud-background.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 75% 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.state-img-div {
-    display: flex;
-    width: 50%;
-    height: 75%;
-
-}
-
-.state-img {
-    width: 100%;
-    height: 100%;
-}
-
-
 .today-weather {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     flex-flow: column;
-    height: 150px;
+    min-height: 150px;
     justify-content: space-between;
     align-items: center;
 }
@@ -126,4 +101,59 @@ i:hover {
     max-height: 500px;
 }
 
+.cloud-display-section {
+    height: 250px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    opacity: 0.3;
+}
 
+
+.state-img-div {
+    width: 50%;
+    height: 50%;
+    left: 50%;
+    top: 50%
+
+}
+
+.state-img {
+    width: 100%;
+    height: 100%;
+}
+
+.img_cloud {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    height: 50%;
+    width: 25%;
+}
+
+.img1 {
+    top: 0;
+    right: 0;
+}
+
+.img2 {
+    top: 0;
+    left: 0;
+    margin-left: -7%;
+}
+
+.img3 {
+    bottom: 0;
+    left: 0;
+    margin-left: -5%;
+
+}
+
+.img4 {
+    bottom: 0;
+    right: 0;
+
+}

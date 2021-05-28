@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import './SearchResult.css'
 
 const SearchResult = ({resultData, setResultData,  showSearchResult, setShowSearch, setWoeid, setShowSearchResult}) => {

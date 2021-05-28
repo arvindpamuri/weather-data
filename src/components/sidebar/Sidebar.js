@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import './Sidebar.css';
 import SearchResult from './searchresult/SearchResult';
-import { TodayWeather } from './TodayWeather/TodayWeather';
+import Cloud from './../../assets/Cloud.png';
 
 const Sidebar = ({ getLocationName, locationResultData, setWoeid, weatherData, unit, getCurrentLocation }) => {
 
@@ -11,7 +11,6 @@ const Sidebar = ({ getLocationName, locationResultData, setWoeid, weatherData, u
     const [showSearchResult, setShowSearchResult] = useState(false);
     const [resultData, setResultData] = useState([]);
 
-    // console.log(weatherData)
     let today = {};
     let week = ["sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     if ( Object.keys(weatherData).length !== 0) {
@@ -100,16 +99,20 @@ const Sidebar = ({ getLocationName, locationResultData, setWoeid, weatherData, u
                     <button className="search-button" onClick={() => setShowSearch(true)}>Search For Location</button>
                     <button className='btn-circle' onClick={() => handleGetCurrentLocation()}><span class="material-icons md-48 md-light">my_location</span></button>
                 </section>
-                <section className="cloud-display">
+                <div className="cloud-display-section">
+                    <img src={Cloud} alt="" className='img_cloud img1'/>
+                    <img src={Cloud} alt="" className='img_cloud img2'/>
+                    <img src={Cloud} alt="" className='img_cloud img3'/>
+                    <img src={Cloud} alt="" className='img_cloud img4'/>
                     <div className="state-img-div">
                         {(today.state_img) ? 
                         (<img src={today.state_img} className="state-img" alt=""/>)
                         : (<p></p>)}
                     </div>
-                </section>
+                </div>
                 
-                {(weatherData) ? (
-                <section className="weather-display-section">
+                {(weatherData && ( Object.keys(weatherData).length !== 0)) ? (
+                <section className="today-weather">
                         <p style={{fontSize: "50px"}}>{today.temp}<span>°{unit}</span></p>
                         <p style={{fontSize: "30px"}}>{today.state}</p>
                         <p style={{fontSize: "20px"}}>Today •   {today.week}, {today.day} {today.month}</p>
@@ -117,7 +120,6 @@ const Sidebar = ({ getLocationName, locationResultData, setWoeid, weatherData, u
                 </section>)
                 :
                 <section></section>}
-
             </>
         );
     }
