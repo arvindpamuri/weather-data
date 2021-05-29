@@ -10,7 +10,6 @@ import GetWeatherAPI from './state/weather';
 function App() {
   
   const [woeid, setWoeid] = useState("");
-  // const [currentWoeid, setCurrentWoeid] = useState("");
   const [weatherData, setWeatherData] = useState({});
   const [locationData, setLocationData] = useState({});
   const [currentLocationData, setCurrentLocationData] = useState({});
@@ -18,13 +17,6 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [searchCoordinates, setSearchCoordinates] = useState("");
   const [userLocationUsed, setUserLocationUsed] = useState(false);
-
-  // console.log(searchCoordinates);
-  // console.log(userLocationUsed);
-  // console.log(currentLocationData);
-  // console.log(searchText)
-  // console.log(woeid)
-  // console.log(locationData)
 
   function getLocationName(text) {
     setSearchText(`query=${text}`);
