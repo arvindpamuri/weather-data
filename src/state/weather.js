@@ -8,19 +8,20 @@ function GetWeatherAPI(woeid) {
 
     const fetchWeatherData = async (id) => {
       
-      let url = "https://secret-savannah-91168.herokuapp.com/https://www.metaweather.com/api/location/".concat(id);
-      //console.log(url)
-      setWeatherData([])
+      if(id !== "") {
+        let url = "https://secret-savannah-91168.herokuapp.com/https://www.metaweather.com/api/location/".concat(id);
+        setWeatherData([])
 
-      try {
-        const response = await fetch(url);
-        const fetchData = await response.json();
+        try {
+          const response = await fetch(url);
+          const fetchData = await response.json();
 
-        setWeatherData(fetchData);
+          setWeatherData(fetchData);
 
-      }
-      catch (error) {
-        console.log(error.message);
+        }
+        catch (error) {
+          console.log(error.message);
+        }
       }
     }
 

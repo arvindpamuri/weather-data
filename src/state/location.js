@@ -9,18 +9,18 @@ function GetLocationAPI(st)  {
       const fetchLocationData = async (st) => {
         setData([]);
 
-        //console.log(st)
-        let url = "https://secret-savannah-91168.herokuapp.com/https://www.metaweather.com/api/location/search/?".concat(st);
-        // console.log(url)
-        try {
-          const response = await fetch(url);
-          const fetchData = await response.json();
-          
-          setData([...fetchData]);
-    
-        } 
-        catch (error) {
-          console.log(error.message);
+        if(st !== "") {
+          let url = "https://secret-savannah-91168.herokuapp.com/https://www.metaweather.com/api/location/search/?".concat(st);
+          try {
+            const response = await fetch(url);
+            const fetchData = await response.json();
+            
+            setData([...fetchData]);
+      
+          } 
+          catch (error) {
+            console.log(error.message);
+          }
         }
       };
 
